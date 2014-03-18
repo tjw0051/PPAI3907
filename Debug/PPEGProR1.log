@@ -1,0 +1,27 @@
+﻿Build started 17/03/2014 11:16:33.
+     1>Project "C:\Users\w003907b\Downloads\PPAIE4GProC++_GDIR1 (tutorial 4-2)\PPAIE4GProC++_GDIR1 (tutorial 3-4)\PPEGProR1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ParticleModel.cpp
+         ParticleModel.cpp
+     1>c:\users\w003907b\downloads\ppaie4gproc++_gdir1 (tutorial 4-2)\ppaie4gproc++_gdir1 (tutorial 3-4)\particlemodel.cpp(97): warning C4305: '+=' : truncation from 'double' to 'float'
+     1>c:\users\w003907b\downloads\ppaie4gproc++_gdir1 (tutorial 4-2)\ppaie4gproc++_gdir1 (tutorial 3-4)\particlemodel.cpp(112): warning C4305: '-=' : truncation from 'double' to 'float'
+     1>c:\users\w003907b\downloads\ppaie4gproc++_gdir1 (tutorial 4-2)\ppaie4gproc++_gdir1 (tutorial 3-4)\particlemodel.cpp(126): warning C4305: '-=' : truncation from 'double' to 'float'
+     1>c:\users\w003907b\downloads\ppaie4gproc++_gdir1 (tutorial 4-2)\ppaie4gproc++_gdir1 (tutorial 3-4)\particlemodel.cpp(139): warning C4305: '+=' : truncation from 'double' to 'float'
+     1>c:\users\w003907b\downloads\ppaie4gproc++_gdir1 (tutorial 4-2)\ppaie4gproc++_gdir1 (tutorial 3-4)\particlemodel.cpp(147): warning C4305: '*=' : truncation from 'double' to 'float'
+     1>c:\users\w003907b\downloads\ppaie4gproc++_gdir1 (tutorial 4-2)\ppaie4gproc++_gdir1 (tutorial 3-4)\particlemodel.cpp(148): warning C4305: '*=' : truncation from 'double' to 'float'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug/PPAIE4GProR1.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug/PPAIE4GProR1.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE:NO /IMPLIB:".\Debug\PPAIE4GProR1.lib" /MACHINE:X86 /SAFESEH .\Debug/Appearance.obj
+         .\Debug/GameObject.obj
+         .\Debug/ParticleModel.obj
+         .\Debug\graphics1.obj
+         .\Debug\input1.obj
+         .\Debug\simulation1.obj
+         .\Debug\winApp1.obj
+         .\Debug\worldData1.obj
+     1>Appearance.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+         PPEGProR1.vcxproj -> C:\Users\w003907b\Downloads\PPAIE4GProC++_GDIR1 (tutorial 4-2)\PPAIE4GProC++_GDIR1 (tutorial 3-4)\.\Debug\PPAIE4GProR1.exe
+     1>Done Building Project "C:\Users\w003907b\Downloads\PPAIE4GProC++_GDIR1 (tutorial 4-2)\PPAIE4GProC++_GDIR1 (tutorial 3-4)\PPEGProR1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.87
