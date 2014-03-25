@@ -22,7 +22,9 @@ GameObject::GameObject(RECT * viewport)
 int GameObject::update(keyEvent kEvent)
 {
 
-	//particleModel.moveConstVel();
+	//particleModel.slidingForce(50, 3);
+	particleModel.updateNetForce();
+	particleModel.updateAccel();
 	particleModel.moveConstAccel();
 	
 	

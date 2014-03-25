@@ -23,6 +23,7 @@ ParticleModel::ParticleModel()
 	netForce.x = 0;
 	netForce.y = 0;
 	mass = 10;
+	gravity = 1;
 	/*
 	displacement.x = rand() % 1 + 3;
 	displacement.y = rand() % 1 + 3; */
@@ -55,8 +56,37 @@ void ParticleModel::moveConstAccel()
 }
 int ParticleModel::updateNetForce()
 {
+	// sliding force
+	netForce.x += sForce.x;
+	netForce.y += sForce.y;
 	return 1;
 }
+int ParticleModel::updateState()
+{
+	updateNetForce();
+	updateAccel();
+	moveConstAccel();
+	return 1;
+}
+int ParticleModel::slidingMotion()
+{
+
+	//slidingForce(theta, frCoef);
+	updateState();
+	moveConstAccel();
+	return 1;
+}
+int ParticleModel::slidingForce(double theta, double frCoef) //theta = angle of plane, frCoef = coefficient of friction.
+{
+	int forceMag = mass * gravity * (sin(theta) - frCoef * cos(theta));
+	// To do: check to ensure that magnitude is not negative
+
+	sForce.x = forceMag * cos(theta); 
+	sForce.y = forceMag * sin(theta); 
+	return 1;
+}
+
+
 int ParticleModel::updateAccel()
 {
 	acceleration.x = netForce.x/mass;

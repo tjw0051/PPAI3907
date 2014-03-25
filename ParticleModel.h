@@ -17,6 +17,8 @@ private:
 	Point2D newAccel;
 
 	int mass;
+	double gravity;
+	Point2D sForce; // sliding force
 	Point2D netForce;
 
 	int currentTime, previousTime;
@@ -43,7 +45,9 @@ public:
 		void moveConstAccel();
 		int updateNetForce();
 		int updateAccel();
-		
+		int slidingMotion();
+		int slidingForce(double theta, double frCoef);
+		int updateState();
 };
 
 #endif
