@@ -1,14 +1,16 @@
-﻿Build started 25/03/2014 13:44:58.
+﻿Build started 01/04/2014 13:45:06.
      1>Project "C:\Users\w003907b\Documents\PPAI3907\PPEGProR1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameObject.cpp
          GameObject.cpp
+     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(85): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(86): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
      1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(87): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
      1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(88): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(89): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(90): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(130): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(131): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(158): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
+     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(165): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
+     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(172): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
+     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(179): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug/PPAIE4GProR1.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug/PPAIE4GProR1.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE:NO /IMPLIB:".\Debug\PPAIE4GProR1.lib" /MACHINE:X86 /SAFESEH .\Debug/Appearance.obj
          .\Debug/GameObject.obj
@@ -24,4 +26,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.16
+Time Elapsed 00:00:03.30

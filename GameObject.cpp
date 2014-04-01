@@ -21,14 +21,12 @@ GameObject::GameObject(RECT * viewport)
 */
 int GameObject::update(keyEvent kEvent)
 {
-
-	//particleModel.slidingForce(50, 3);
+	particleModel.slidingForce(2, 1);
 	particleModel.updateNetForce();
 	particleModel.updateAccel();
 	particleModel.moveConstAccel();
 	
-	
-	switch(kEvent)
+	switch(kEvent) 
 		{
 			case D:
 				particleModel.moveRight();
@@ -116,7 +114,7 @@ int GameObject::worldCollisionCheck()
 	return 1;
 }
 */
-
+/*
 int GameObject::worldCollisionCheck()
 {
 	if(BoundingBox().left < viewport.left) // player off left of screen
@@ -148,8 +146,43 @@ int GameObject::worldCollisionCheck()
 	
 	return 1;
 }
-/* 
+*/
 
+int GameObject::worldCollisionCheck()
+{
+	if(BoundingBox().left < viewport.left) // player off left of screen
+	{
+		newPos.x = 0;
+		newPos.y = 0;
+		particleModel.setVel(newPos);
+		particleModel.setPosition(viewport.left, particleModel.getPosition().y);
+	}
+	if(BoundingBox().right > viewport.right)
+	{
+		newPos.x = 0;
+		newPos.y = 0;
+		particleModel.setVel(newPos);
+		particleModel.setPosition(viewport.right - appearance.getWidth(), particleModel.getPosition().y);
+	}
+	if(BoundingBox().top < viewport.top)
+	{
+		newPos.x = 0;
+		newPos.y = 0;
+		particleModel.setVel(newPos);
+		particleModel.setPosition(particleModel.getPosition().x, viewport.top);
+	}
+	if(BoundingBox().bottom > viewport.bottom)
+	{
+		newPos.x = 0;
+		newPos.y = 0;
+		particleModel.setVel(newPos);
+		particleModel.setPosition(particleModel.getPosition().x, viewport.bottom - appearance.getHeight());
+	}
+	
+	return 1;
+}
+
+/* 
 -----------------------------------
 Const Displacment world collision
 ------------------------------------
