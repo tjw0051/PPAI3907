@@ -18,8 +18,11 @@ private:
 
 	int mass;
 	double gravity;
+	Point2D drag;
+	int dragFactor;
 	Point2D sForce; // sliding force
 	Point2D netForce;
+	Point2D moveForce;
 
 	int currentTime, previousTime;
 
@@ -32,6 +35,7 @@ public:
 		int moveLeft();
 		int moveUp();
 		int moveDown();
+		int moveNull();
 		int brake();
 		ParticleModel();
 		Point2D getVel();
@@ -44,6 +48,7 @@ public:
 		void moveConstVel();
 		void moveConstAccel();
 		int updateNetForce();
+		int updateDragForce();
 		int updateAccel();
 		int slidingMotion();
 		int slidingForce(double theta, double frCoef);

@@ -1,29 +1,35 @@
-﻿Build started 01/04/2014 13:45:06.
-     1>Project "C:\Users\w003907b\Documents\PPAI3907\PPEGProR1.vcxproj" on node 2 (Build target(s)).
+﻿Build started 22/04/2014 17:02:51.
+     1>Project "C:\Users\Tom\University Work\Year 2\Semester 2\Programming Physics and AI Engines for Games\PPAI3907\PPEGProR1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameObject.cpp
-         GameObject.cpp
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(85): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(86): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(87): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(88): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(158): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(165): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(172): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
-     1>c:\users\w003907b\documents\ppai3907\gameobject.cpp(179): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ParticleModel.cpp
+         ParticleModel.cpp
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(31): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(66): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(93): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(96): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(97): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(153): warning C4305: '+=' : truncation from 'double' to 'float'
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(170): warning C4305: '-=' : truncation from 'double' to 'float'
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(184): warning C4305: '-=' : truncation from 'double' to 'float'
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(198): warning C4305: '+=' : truncation from 'double' to 'float'
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(213): warning C4305: '*=' : truncation from 'double' to 'float'
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(214): warning C4305: '*=' : truncation from 'double' to 'float'
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\worldData1.obj" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt worldData.cpp
+         worldData.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug/PPAIE4GProR1.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug/PPAIE4GProR1.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE:NO /IMPLIB:".\Debug\PPAIE4GProR1.lib" /MACHINE:X86 /SAFESEH .\Debug/Appearance.obj
          .\Debug/GameObject.obj
          .\Debug/ParticleModel.obj
+         .\Debug/WorldObject.obj
          .\Debug\graphics1.obj
          .\Debug\input1.obj
          .\Debug\simulation1.obj
          .\Debug\winApp1.obj
          .\Debug\worldData1.obj
      1>Appearance.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
-         PPEGProR1.vcxproj -> C:\Users\w003907b\Documents\PPAI3907\.\Debug\PPAIE4GProR1.exe
-     1>Done Building Project "C:\Users\w003907b\Documents\PPAI3907\PPEGProR1.vcxproj" (Build target(s)).
+         PPEGProR1.vcxproj -> C:\Users\Tom\University Work\Year 2\Semester 2\Programming Physics and AI Engines for Games\PPAI3907\.\Debug\PPAIE4GProR1.exe
+     1>Done Building Project "C:\Users\Tom\University Work\Year 2\Semester 2\Programming Physics and AI Engines for Games\PPAI3907\PPEGProR1.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:03.30
+Time Elapsed 00:00:02.32

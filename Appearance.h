@@ -13,6 +13,7 @@ private:
 
 public:
 	void setShape2Square();
+	void setShape2Hill();
 	Point2D getShapeFromVert(int vert);
 	int getWidth();
 	int getHeight();

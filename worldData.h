@@ -21,7 +21,7 @@
 #include	"input.h"			/* include file for user input module */
 
 #include "GameObject.h"
-
+#include "WorldObject.h"
 
 class WorldData
 	{
@@ -30,6 +30,8 @@ class WorldData
 		
 
 		GameObject gameObject1, gameObject2;
+		WorldObject slopeObject;
+
 	    // Appearance attributes (for object display)
 					// array to store a polygonal shape consisting of four vertices (e.g. a square) 
 				// array to store display coordinates of a polygonal object
@@ -37,7 +39,8 @@ class WorldData
 		// Dynamics parameters (for physics simulation) 
 						// position of particle used as physics model of game object
 		RECT viewport;
-		
+		//Point2D		slopePolygon[4];
+
 	public:
 
 		// Constructors and destructor
@@ -48,7 +51,8 @@ class WorldData
 		void worldCleanUp();							// Release objects, if applicable
 
 		int update(keyEvent kEvent);					// Update the world's dynamics state
-
+		int collisionCheck();
+		bool rectIntersect(RECT rect1, RECT rect2);
 		//int worldCollisionCheck(GameObject * gameObject);
 		int draw(GraphicsM * pGraphicsModule);			// Draw the world
 

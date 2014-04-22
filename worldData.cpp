@@ -36,10 +36,8 @@
 WorldData::WorldData()
 	{
 	/* TO DO: add relevant code */
-
+		
 	}
-
-
 
 /**
     Initialises the world
@@ -48,12 +46,15 @@ WorldData::WorldData()
          none.
   */
 int WorldData::worldDataModuleInit(GraphicsM * graphics)
-	{
+{
 		viewport = graphics->getViewport();
 		//GameObject gameObject1 = GameObject(&viewport);
 
+		//slopePolygon
+		//slopeObject = WorldObject(0, 300, 600);
+
 	return 1;
-	}
+}
 
 
 /*
@@ -145,6 +146,7 @@ int WorldData::update(keyEvent kEvent)
             
 			break;
 		case RIGHT:
+			
 			// TO DO: service right-key as approriate
             // For example:
 			// update world position of object to move it to the right.
@@ -159,11 +161,43 @@ int WorldData::update(keyEvent kEvent)
 			break;
 		}
 	gameObject1.update(kEvent);
+	//slopeObject.update(kEvent);
 	//worldCollisionCheck(&gameObject1);
+	/*
+	//update collision with slope
+	collisionCheck();
+	*/
+	collisionCheck();
 	return 1;
+}
+
+int WorldData::collisionCheck()
+{
+	if(rectIntersect(slopeObject.BoundingBox(), gameObject1.BoundingBox()))
+	{
+		gameObject1.setSlidingForce(2, 0.4);
 	}
-
-
+	else
+		gameObject1.setSlidingForce(0, 0);
+	/*
+	foreach worldobject
+	check collision with each side
+	 - player sliding force - get angle from worldobject
+	check collision with top
+	 - stop y vel.
+	*/
+	return 1;
+} 
+bool WorldData::rectIntersect(RECT rect1, RECT rect2)
+{
+	if(rect1.left > rect2.right || rect1.right < rect2.left
+		||rect1.bottom < rect2.top || rect1.top > rect2.bottom)
+	{
+		return false;
+	}
+	else
+		return true;
+}
 /*
 	Updates particle position: move particle towards right.
 
@@ -191,17 +225,19 @@ int WorldData::update(keyEvent kEvent)
 		pGraphicsModule       pointer to graphics module.
 */
 int WorldData::draw(GraphicsM * pGraphicsModule)
-	{
+{
     /* TO DO: add relevant code */
 
     /* Display world */
-
+	//pGraphicsModule->drawPolygon(slopePolygon, 4, true);
 	//   Draw the square.
+		slopeObject.draw(pGraphicsModule);
 		gameObject1.draw(pGraphicsModule);
+		
 
 
 	return 1;
-    }
+}
 
 
 /*

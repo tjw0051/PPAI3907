@@ -7,7 +7,9 @@ GameObject::GameObject()
 	viewport.top = 10;
 	viewport.right = 900; //650
 	viewport.bottom = 700; // 490
-	particleModel.setPosition(500.0F, 200.0F);
+	slidingTheta = 0;
+	slidingfrCoef = 0;
+	particleModel.setPosition(100.0F, 650.0F);
 	appearance.setShape2Square();
 }
 /*
@@ -21,7 +23,8 @@ GameObject::GameObject(RECT * viewport)
 */
 int GameObject::update(keyEvent kEvent)
 {
-	particleModel.slidingForce(2, 1);
+	particleModel.updateDragForce();
+	particleModel.slidingForce(slidingTheta, slidingfrCoef); // 2, 0.4
 	particleModel.updateNetForce();
 	particleModel.updateAccel();
 	particleModel.moveConstAccel();
@@ -44,6 +47,9 @@ int GameObject::update(keyEvent kEvent)
 				particleModel.brake();
 				//particleModel.setVel( convertToPoint2D( rand() % 1 + 360, rand() % -5 + 5));
 					break;
+			default:
+				particleModel.moveNull();
+				break;
 	}
 	worldCollisionCheck();
 	return 1;
@@ -66,7 +72,7 @@ int GameObject::draw(GraphicsM * pGraphicsModule)
 }
 
 int GameObject::dispBufUpdate()
-	{
+{
     /* TO DO: add relevant code */
 
     // update display object (content of display buffer (with calculated vertex coordinates of square at its current position))
@@ -75,10 +81,13 @@ int GameObject::dispBufUpdate()
       dispBuffObj[vert].x = appearance.getShapeFromVert(vert).x + particleModel.getPosition().x;
 	  dispBuffObj[vert].y = appearance.getShapeFromVert(vert).y + particleModel.getPosition().y;
       }
-
     return 1;
-	}
-
+}
+void GameObject::setSlidingForce(double theta, double frCoef)
+{
+	slidingTheta = theta;
+	slidingfrCoef = frCoef;
+}
 RECT GameObject::BoundingBox()
 {
 	RECT boundingBox;
@@ -171,12 +180,12 @@ int GameObject::worldCollisionCheck()
 		particleModel.setVel(newPos);
 		particleModel.setPosition(particleModel.getPosition().x, viewport.top);
 	}
-	if(BoundingBox().bottom > viewport.bottom)
+	if(BoundingBox().bottom > viewport.bottom - 40)
 	{
 		newPos.x = 0;
 		newPos.y = 0;
 		particleModel.setVel(newPos);
-		particleModel.setPosition(particleModel.getPosition().x, viewport.bottom - appearance.getHeight());
+		particleModel.setPosition(particleModel.getPosition().x, viewport.bottom - appearance.getHeight() - 40);
 	}
 	
 	return 1;

@@ -19,13 +19,14 @@ private:
 
 		Point2D		dispBuffObj[4];
 		RECT viewport;
-
+		double slidingTheta, slidingfrCoef;
 public:
 	GameObject();
 	//GameObject(RECT * viewport);
 	int update(keyEvent kEvent);
 	int draw(GraphicsM * pGraphicsModule);
 	RECT BoundingBox();
+	void setSlidingForce(double theta, double frCoef);
 
 private:
 	int dispBufUpdate();
