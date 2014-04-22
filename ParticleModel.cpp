@@ -28,7 +28,9 @@ ParticleModel::ParticleModel()
 	drag.y = 0;
 	mass = 1;
 	gravity = 1;
+	verticalGravity = gravity;
 	dragFactor = 1.0;
+	slideAngle = 0;
 	/*
 	displacement.x = rand() % 1 + 3;
 	displacement.y = rand() % 1 + 3; */
@@ -63,7 +65,7 @@ int ParticleModel::updateNetForce()
 {
 	// sliding force
 	netForce.x = (sForce.x + moveForce.x) + drag.x;
-	netForce.y = (sForce.y + moveForce.y) + drag.y + gravity;
+	netForce.y = (sForce.y + moveForce.y) + verticalGravity + drag.y;
 	return 1;
 }
 int ParticleModel::updateDragForce()
@@ -90,11 +92,17 @@ int ParticleModel::slidingMotion()
 }
 int ParticleModel::slidingForce(double theta, double frCoef) //theta = angle of plane, frCoef = coefficient of friction.
 {
+	if(theta != 0)
+		verticalGravity = 0;
+	else
+		verticalGravity = gravity;
+
+	slideAngle = theta;
 	int forceMag = mass * gravity * (sin(theta) - frCoef * cos(theta));
 	// To do: check to ensure that magnitude is not negative
 
-	sForce.x = forceMag * cos(theta); 
-	sForce.y = forceMag * sin(theta); 
+	sForce.x = forceMag * cos(theta);
+	sForce.y = forceMag * sin(theta);
 	return 1;
 }
 int ParticleModel::updateAccel()
@@ -150,7 +158,13 @@ int ParticleModel::moveRight()
 
 	//velocity.x += acceleration.x;
 	//acceleration.x += 1.0;
-	moveForce.x += 0.05;
+	if(slideAngle < M_PI && slideAngle > (0.5*M_PI))
+	{
+		moveForce.x = -directionalVelocity(4.0, slideAngle).x;
+		moveForce.y = -directionalVelocity(4.0, slideAngle).y;
+	}
+	else
+		moveForce.x = 2.0;
 
 return 1;
 }
@@ -167,7 +181,13 @@ int ParticleModel::moveLeft()
 	//setVel(newAccel);
 
 	//acceleration.x -= 1.0;
-	moveForce.x -= 0.05;
+	if(slideAngle > 0 && slideAngle < (0.5*M_PI))
+	{
+		moveForce.x = -directionalVelocity(4.0, slideAngle).x;
+		moveForce.y = -directionalVelocity(4.0, slideAngle).y;
+	}
+	else
+		moveForce.x = -2.0; // 0.05
 return 1;
 }
 int ParticleModel::moveUp()
@@ -181,10 +201,13 @@ int ParticleModel::moveUp()
 	//setVel(newAccel);
 
 	//acceleration.y -= 1.0;
-	moveForce.y -= 0.05;
+	//moveForce.y -= 0.05;
+	moveForce.x = -directionalVelocity(4.0, M_PI).x;
+	moveForce.y = -directionalVelocity(4.0, M_PI).y;
 
 return 1;
 }
+
 int ParticleModel::moveDown()
 {
 // update world position of object.
@@ -195,7 +218,7 @@ int ParticleModel::moveDown()
 	//setVel(newAccel);
 
 	//acceleration.y += 1.0;
-	moveForce.x += 0.05;
+	moveForce.y -= 0.05;
 
 return 1;
 }
@@ -215,4 +238,13 @@ int ParticleModel::brake()
 	moveForce.x = 0.0;
 	moveForce.y = 0.0;
 	return 1;
+}
+//takes a direction and velocity and gives the resulting x and y magnitude.
+Point2D ParticleModel::directionalVelocity(double velocity, double angle)
+{
+	double angleInRads = angle;//((angle*M_PI)/180);
+	Point2D resultantVelocity;
+	resultantVelocity.x = velocity * cos(angleInRads);
+	resultantVelocity.y = velocity * sin(angleInRads);
+	return resultantVelocity;
 }

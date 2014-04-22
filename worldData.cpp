@@ -175,7 +175,8 @@ int WorldData::collisionCheck()
 {
 	if(rectIntersect(slopeObject.BoundingBox(), gameObject1.BoundingBox()))
 	{
-		gameObject1.setSlidingForce(2, 0.4);
+		double angle = slopeObject.getAngleAtPos(gameObject1.getPos());
+		gameObject1.setSlidingForce(angle, 0.4);
 	}
 	else
 		gameObject1.setSlidingForce(0, 0);

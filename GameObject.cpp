@@ -87,6 +87,7 @@ void GameObject::setSlidingForce(double theta, double frCoef)
 {
 	slidingTheta = theta;
 	slidingfrCoef = frCoef;
+	
 }
 RECT GameObject::BoundingBox()
 {
@@ -190,7 +191,10 @@ int GameObject::worldCollisionCheck()
 	
 	return 1;
 }
-
+Point2D GameObject::getPos()
+{
+	return particleModel.getPosition();
+}
 /* 
 -----------------------------------
 Const Displacment world collision

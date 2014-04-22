@@ -13,7 +13,6 @@ class WorldObject
 private:
 		ParticleModel particleModel;
 		Appearance appearance;
-
 		Point2D		dispBuffObj[4];
 		RECT viewport;
 
@@ -25,5 +24,6 @@ public:
 	int draw(GraphicsM * pGraphicsModule);
 	int dispBufUpdate();
 	RECT BoundingBox();
+	double getAngleAtPos(Point2D pos);
 };
 #endif

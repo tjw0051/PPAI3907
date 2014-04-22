@@ -21,6 +21,16 @@ WorldObject::WorldObject(int shape, int posX, int posY)
 	if(shape = 0)
 		appearance.setShape2Hill();
 }
+double WorldObject::getAngleAtPos(Point2D pos)
+{
+	if(pos.x > dispBuffObj[3].x && pos.x < dispBuffObj[0].x)
+		return (sqrt(pow(dispBuffObj[0].x - dispBuffObj[3].x, 2) + pow(dispBuffObj[0].y - dispBuffObj[3].y, 2)));
+	if(pos.x > dispBuffObj[0].x && pos.x < dispBuffObj[1].x)
+		return 0;
+	if(pos.x > dispBuffObj[1].x && pos.x < dispBuffObj[2].x)
+		return (sqrt(pow(dispBuffObj[2].x - dispBuffObj[1].x, 2) + pow(dispBuffObj[1].y - dispBuffObj[2].y, 2)));
+
+}
 int WorldObject::draw(GraphicsM * pGraphicsModule)
 {
 	dispBufUpdate();	// update content of display buffer (with outline of square at its current position)
