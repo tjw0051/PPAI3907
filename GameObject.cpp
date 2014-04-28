@@ -21,8 +21,35 @@ GameObject::GameObject(RECT * viewport)
 	
 }
 */
+int GameObject::update()
+{
+	particleModel.updateDragForce();
+	particleModel.slidingForce(slidingTheta, slidingfrCoef); // 2, 0.4
+	particleModel.updateNetForce();
+	particleModel.updateAccel();
+	particleModel.moveConstAccel();
+
+	worldCollisionCheck();
+	if(impulse == true)
+	{
+		particleModel.moveNull();
+		impulse = false;
+	}
+
+	return 1;
+}
+void GameObject::fire(Point2D originPos)
+{
+	particleModel.randomProjectile(originPos);
+	impulse = true;
+}
+void GameObject::release()
+{
+	particleModel.moveNull();
+}
 int GameObject::update(keyEvent kEvent)
 {
+	
 	particleModel.updateDragForce();
 	particleModel.slidingForce(slidingTheta, slidingfrCoef); // 2, 0.4
 	particleModel.updateNetForce();
@@ -87,7 +114,6 @@ void GameObject::setSlidingForce(double theta, double frCoef)
 {
 	slidingTheta = theta;
 	slidingfrCoef = frCoef;
-	
 }
 RECT GameObject::BoundingBox()
 {
@@ -96,6 +122,18 @@ RECT GameObject::BoundingBox()
 	boundingBox.top = particleModel.getPosition().y;
 	boundingBox.right = particleModel.getPosition().x + appearance.getWidth();
 	boundingBox.bottom = particleModel.getPosition().y + appearance.getHeight();
+	
+	return boundingBox;
+}
+RECT GameObject::movingBoundingBox()
+{
+	Point2D vel = particleModel.getVel();
+	Point2D accel = particleModel.getAccel();
+	RECT boundingBox;
+	boundingBox.left = particleModel.getPosition().x + vel.x + accel.x;
+	boundingBox.top = particleModel.getPosition().y + vel.y + accel.y;
+	boundingBox.right = particleModel.getPosition().x + appearance.getWidth() + vel.x + accel.x;
+	boundingBox.bottom = particleModel.getPosition().y + appearance.getHeight() + vel.y + accel.y;
 	
 	return boundingBox;
 }
@@ -157,7 +195,21 @@ int GameObject::worldCollisionCheck()
 	return 1;
 }
 */
-
+void GameObject::collision()
+{
+	//particleModel.setLastPos();
+	Point2D newPoint2D;
+	newPoint2D.x = particleModel.getAccel().x;
+	newPoint2D.y = 0;
+	particleModel.setAccel(newPoint2D);
+	newPoint2D.x = particleModel.getVel().x;
+	particleModel.setVel(newPoint2D);
+}
+void GameObject::isColliding(bool val)
+{
+	//if(val = true)
+		
+}
 int GameObject::worldCollisionCheck()
 {
 	if(BoundingBox().left < viewport.left) // player off left of screen

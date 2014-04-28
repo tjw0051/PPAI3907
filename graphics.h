@@ -35,7 +35,9 @@ class GraphicsM
 		int	backBufWidth;			/* width of back buffer */
 		int	backBufHeight;			/* height of back buffer */
 		RECT viewport;				/* display viewport */
-
+		Graphics * g;
+		Rect * backgroundRect;
+		Image * backgroundImage;
 	public:
 
 		// Constructor and destructor

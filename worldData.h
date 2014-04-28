@@ -15,6 +15,7 @@
 #ifndef _WORLDDATA_H
 #define _WORLDDATA_H
 
+#include	<iostream>
 #include	<windows.h>
 #include	"dataTypes.h"		/* include file for custom data types */
 #include	"graphics.h"		/* include file for graphics module */
@@ -23,6 +24,7 @@
 #include "GameObject.h"
 #include "WorldObject.h"
 
+using namespace std;
 class WorldData
 	{
 	private:
@@ -32,6 +34,9 @@ class WorldData
 		GameObject gameObject1, gameObject2;
 		WorldObject slopeObject;
 
+		//Image backgroundImage;
+		//RECT background;
+		//Graphics g;
 	    // Appearance attributes (for object display)
 					// array to store a polygonal shape consisting of four vertices (e.g. a square) 
 				// array to store display coordinates of a polygonal object

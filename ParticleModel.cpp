@@ -1,19 +1,8 @@
 #include "ParticleModel.h"
 
 
-/*
- * Sets position of particle.
- *
- * Parameter list
- *        xPos		x-coordinate of position.
- *        yPos		y-coordinate of position.
- */
 ParticleModel::ParticleModel()
 {
-	//displacement.x = rand() % -2 + 2;
-	//displacement.y = rand() % -2 + 2;
-	//velocity.x = rand() % -2 + 2;
-	//velocity.y = rand() % -2 + 2;
 	velocity.x = 0;
 	velocity.y = 0;
 	displacement.x = 0;
@@ -31,9 +20,7 @@ ParticleModel::ParticleModel()
 	verticalGravity = gravity;
 	dragFactor = 1.0;
 	slideAngle = 0;
-	/*
-	displacement.x = rand() % 1 + 3;
-	displacement.y = rand() % 1 + 3; */
+	srand(time(0));
 	previousTime = GetTickCount();
 }
 void ParticleModel::moveConstDispl()
@@ -43,7 +30,6 @@ void ParticleModel::moveConstDispl()
 }
 void ParticleModel::moveConstVel()
 {
-	// update world position of object by adding displacement (i.e.  velocity x time step) to  previous position
 	currentTime = GetTickCount();
 	pos.x = pos.x +  velocity.x * (currentTime - previousTime)/10;
 	pos.y = pos.y +  velocity.y * (currentTime - previousTime)/10;
@@ -51,21 +37,31 @@ void ParticleModel::moveConstVel()
 }
 void ParticleModel::moveConstAccel()
 {
+	lastPos.x = pos.x; 
+	lastPos.y = pos.y;
+
 	currentTime = GetTickCount();
 
-	pos.x += velocity.x * ((currentTime - previousTime)/10) + 0.5f * acceleration.x * ((currentTime - previousTime)/10) * ((currentTime - previousTime)/10);
-	pos.y += velocity.y * ((currentTime - previousTime)/10) + 0.5f * acceleration.y * ((currentTime - previousTime)/10) * ((currentTime - previousTime)/10);
+	pos.x += velocity.x * ((currentTime - previousTime)/10) + 0.5f * 
+		acceleration.x * ((currentTime - previousTime)/10) * ((currentTime - previousTime)/10);
+	pos.y += velocity.y * ((currentTime - previousTime)/10) + 0.5f * 
+		acceleration.y * ((currentTime - previousTime)/10) * ((currentTime - previousTime)/10);
 
 	velocity.x += acceleration.x * ((currentTime - previousTime)/10);
 	velocity.y += acceleration.y * ((currentTime - previousTime)/10);
 	
 	previousTime = currentTime;
 }
+int ParticleModel::updateAccel()
+{
+	acceleration.x = netForce.x/mass;
+	acceleration.y = netForce.y/mass;
+	return 1;
+}
 int ParticleModel::updateNetForce()
 {
-	// sliding force
-	netForce.x = (sForce.x + moveForce.x) + drag.x;
-	netForce.y = (sForce.y + moveForce.y) + verticalGravity + drag.y;
+	netForce.x = (sForce.x + moveForce.x) ;						//+ drag.x;
+	netForce.y = (sForce.y + moveForce.y) + verticalGravity ;	//+ drag.y;
 	return 1;
 }
 int ParticleModel::updateDragForce()
@@ -73,6 +69,11 @@ int ParticleModel::updateDragForce()
 	drag.x = -dragFactor * velocity.x;
 	drag.y = -dragFactor * velocity.y;
 	return 1;
+}
+void ParticleModel::setLastPos()
+{
+	pos.x = lastPos.x;
+	pos.y = lastPos.y;
 }
 int ParticleModel::updateState()
 {
@@ -84,34 +85,34 @@ int ParticleModel::updateState()
 }
 int ParticleModel::slidingMotion()
 {
-
 	//slidingForce(2.0, 1);
 	updateState();
 	moveConstAccel();
 	return 1;
 }
-int ParticleModel::slidingForce(double theta, double frCoef) //theta = angle of plane, frCoef = coefficient of friction.
+//theta = angle of plane, frCoef = coefficient of friction.
+int ParticleModel::slidingForce(double theta, double frCoef) 
 {
-	if(theta != 0)
-		verticalGravity = 0;
+	if(theta != 0 && frCoef != 0)
+		verticalGravity = 0; //if on a slope, stop using general vertical gravity.
 	else
 		verticalGravity = gravity;
-
-	slideAngle = theta;
-	int forceMag = mass * gravity * (sin(theta) - frCoef * cos(theta));
-	// To do: check to ensure that magnitude is not negative
-
-	sForce.x = forceMag * cos(theta);
-	sForce.y = forceMag * sin(theta);
-	return 1;
+	if(theta != 100)
+	{
+		int forceMag;
+		slideAngle = theta;
+		if(theta <= 0) //change fall direction depending on slope angle.
+			forceMag = mass * gravity * (sin(theta) - frCoef * cos(theta));
+		else
+			forceMag = mass * gravity * (sin(theta) - -frCoef * cos(theta));
+		sForce.x = forceMag * cos(theta);
+		sForce.y = forceMag * sin(theta);
+		return 1;
+	}
+	else //if theta is 100, stop gravity for collision with horizontal surfaces.
+		verticalGravity = 0;
 }
-int ParticleModel::updateAccel()
-{
-	acceleration.x = netForce.x/mass;
-	acceleration.y = netForce.y/mass;
 
-	return 1;
-}
 Point2D ParticleModel::getVel()
 {
 	return velocity;
@@ -146,79 +147,65 @@ Point2D ParticleModel::getPosition()
 {
 	return pos;
 }
+void ParticleModel::randomProjectile(Point2D originPos)
+{
+	pos.x = originPos.x;
+	pos.y = originPos.y;
+	double force = rand() % 10 + 1;
+	double angle = rand() / (RAND_MAX/M_PI);
+	moveForce.x = -directionalVelocity(force, angle).x;
+	moveForce.y = -directionalVelocity(force, angle).y;
+}
 int ParticleModel::moveRight()
 {
-// update world position of object.
-//pos.x += displacement.x;
-	//moveConstDispl();
-	//moveConstVel();
-	//newAccel.x = getAccel().x + 10.0;
-	//newAccel.y = getAccel().y;
-	//setAccel(newAccel);
-
-	//velocity.x += acceleration.x;
-	//acceleration.x += 1.0;
-	if(slideAngle < M_PI && slideAngle > (0.5*M_PI))
+	if(slideAngle < 0 && slideAngle > -(0.5*M_PI))
 	{
-		moveForce.x = -directionalVelocity(4.0, slideAngle).x;
-		moveForce.y = -directionalVelocity(4.0, slideAngle).y;
+		moveForce.x = directionalVelocity(2.0, slideAngle).x;
+		moveForce.y = directionalVelocity(2.0, slideAngle).y;
 	}
 	else
-		moveForce.x = 2.0;
+		moveForce.x = directionalVelocity(2.0, slideAngle).x;
+		moveForce.y = directionalVelocity(2.0, slideAngle).y;
 
 return 1;
 }
 int ParticleModel::moveLeft()
 {
-
-// update world position of object.
-//pos.x -= displacement.x; 
-	//moveConstDispl();
-	//moveConstVel();
-	//newAccel.x = getAccel().x - 10.0;
-	//newAccel.y = getAccel().y;
-	//setAccel(newAccel);#
-	//setVel(newAccel);
-
-	//acceleration.x -= 1.0;
 	if(slideAngle > 0 && slideAngle < (0.5*M_PI))
 	{
-		moveForce.x = -directionalVelocity(4.0, slideAngle).x;
-		moveForce.y = -directionalVelocity(4.0, slideAngle).y;
+		moveForce.x = -directionalVelocity(2.0, slideAngle).x;
+		moveForce.y = -directionalVelocity(2.0, slideAngle).y;
 	}
-	else
-		moveForce.x = -2.0; // 0.05
+	else 
+	{
+		moveForce.x = -directionalVelocity(2.0, slideAngle).x;
+		moveForce.y = -directionalVelocity(2.0, slideAngle).y;
+	}
 return 1;
 }
 int ParticleModel::moveUp()
 {
+	double force = 15;
+	double xTarget = 500;
+	double yTarget = 500;
+	double d = 750 - pos.x;
+	//double v = force / mass;
+	double v = (force / mass);// * ((currentTime - previousTime)/10);
+	double g = gravity; //* ((currentTime - previousTime)/10);
+	double angle = 0.5*(asin( (-1*500) / (pow((double)15, (int)2)) ));
+	//double angleInRads = (angle*M_PI)/180;
+	double angle2 = atan(	(pow(v, 2) + sqrt(pow(v, 4) - g*(g*pow(xTarget, 2) + 2*yTarget*pow(v, 2))) )	
+					/	(g*xTarget) );
+	moveForce.x = -directionalVelocity(force, angle).x;
+	moveForce.y = -directionalVelocity(force, angle).y;
 
-// update world position of object.
-//pos.y -= displacement.y; 
-	//newAccel.x = getAccel().x;
-	//newAccel.y = getAccel().y - 20.0;
-	//setAccel(newAccel);
-	//setVel(newAccel);
-
-	//acceleration.y -= 1.0;
-	//moveForce.y -= 0.05;
-	moveForce.x = -directionalVelocity(4.0, M_PI).x;
-	moveForce.y = -directionalVelocity(4.0, M_PI).y;
-
-return 1;
+	return 1;
 }
 
 int ParticleModel::moveDown()
 {
 // update world position of object.
-//pos.y += displacement.y; 
-	//newAccel.x = getAccel().x;
-	//newAccel.y = getAccel().y + 20.0;
-	//setAccel(newAccel);
-	//setVel(newAccel);
-
-	//acceleration.y += 1.0;
-	moveForce.y -= 0.05;
+	moveForce.y = -5.0;
 
 return 1;
 }
@@ -242,7 +229,7 @@ int ParticleModel::brake()
 //takes a direction and velocity and gives the resulting x and y magnitude.
 Point2D ParticleModel::directionalVelocity(double velocity, double angle)
 {
-	double angleInRads = angle;//((angle*M_PI)/180);
+	double angleInRads = angle;
 	Point2D resultantVelocity;
 	resultantVelocity.x = velocity * cos(angleInRads);
 	resultantVelocity.y = velocity * sin(angleInRads);

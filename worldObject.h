@@ -24,6 +24,7 @@ public:
 	int draw(GraphicsM * pGraphicsModule);
 	int dispBufUpdate();
 	RECT BoundingBox();
-	double getAngleAtPos(Point2D pos);
+	double getAngleAtPos(RECT object);
+	bool checkLineIntersect(RECT object, Point2D line, double theta);
 };
 #endif

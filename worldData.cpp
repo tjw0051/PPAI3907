@@ -36,7 +36,7 @@
 WorldData::WorldData()
 	{
 	/* TO DO: add relevant code */
-		
+		//background = new Bitmap;
 	}
 
 /**
@@ -49,7 +49,8 @@ int WorldData::worldDataModuleInit(GraphicsM * graphics)
 {
 		viewport = graphics->getViewport();
 		//GameObject gameObject1 = GameObject(&viewport);
-
+		//backgroundImage = new Image(L"background.png");
+		//background = viewport;
 		//slopePolygon
 		//slopeObject = WorldObject(0, 300, 600);
 
@@ -155,12 +156,16 @@ int WorldData::update(keyEvent kEvent)
 			// TO DO: service left-key as approriate
             
 			break;
+		case SPACE:
+			gameObject2.fire(gameObject1.getPos());
+			break;
 		default:
 			// TO DO: service "all-other-keys" as approriate
 
 			break;
 		}
 	gameObject1.update(kEvent);
+	gameObject2.update();
 	//slopeObject.update(kEvent);
 	//worldCollisionCheck(&gameObject1);
 	/*
@@ -171,22 +176,23 @@ int WorldData::update(keyEvent kEvent)
 	return 1;
 }
 
-int WorldData::collisionCheck()
+int WorldData::collisionCheck() // worldData.cpp
 {
+	double angle = 0;
 	if(rectIntersect(slopeObject.BoundingBox(), gameObject1.BoundingBox()))
 	{
-		double angle = slopeObject.getAngleAtPos(gameObject1.getPos());
-		gameObject1.setSlidingForce(angle, 0.4);
+		angle = slopeObject.getAngleAtPos(gameObject1.BoundingBox());
+		gameObject1.setSlidingForce(angle, 0.8); //-1.012
+		if(angle == 100)
+		{
+			gameObject1.collision();
+		}
 	}
 	else
+	{
+		gameObject1.isColliding(false);
 		gameObject1.setSlidingForce(0, 0);
-	/*
-	foreach worldobject
-	check collision with each side
-	 - player sliding force - get angle from worldobject
-	check collision with top
-	 - stop y vel.
-	*/
+	}
 	return 1;
 } 
 bool WorldData::rectIntersect(RECT rect1, RECT rect2)
@@ -232,9 +238,11 @@ int WorldData::draw(GraphicsM * pGraphicsModule)
     /* Display world */
 	//pGraphicsModule->drawPolygon(slopePolygon, 4, true);
 	//   Draw the square.
+
+
 		slopeObject.draw(pGraphicsModule);
 		gameObject1.draw(pGraphicsModule);
-		
+		gameObject2.draw(pGraphicsModule);
 
 
 	return 1;

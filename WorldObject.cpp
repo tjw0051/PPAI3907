@@ -21,15 +21,58 @@ WorldObject::WorldObject(int shape, int posX, int posY)
 	if(shape = 0)
 		appearance.setShape2Hill();
 }
-double WorldObject::getAngleAtPos(Point2D pos)
+bool WorldObject::checkLineIntersect(RECT object, Point2D line, double theta)
 {
-	if(pos.x > dispBuffObj[3].x && pos.x < dispBuffObj[0].x)
-		return (sqrt(pow(dispBuffObj[0].x - dispBuffObj[3].x, 2) + pow(dispBuffObj[0].y - dispBuffObj[3].y, 2)));
-	if(pos.x > dispBuffObj[0].x && pos.x < dispBuffObj[1].x)
+	//finds the height along the line at the length of the objects left side.
+	double lineLeftPos = line.y + (tan(theta)*(line.x-object.left));
+	//finds the height along the line at the length of the objects right side.
+	double lineRightPos = line.y + (tan(theta)*(line.x-object.right));
+	//check if all corners of RECT are RIGHT of line.
+	if(lineLeftPos > object.top && lineLeftPos > object.bottom &&
+		lineRightPos > object.top && lineRightPos > object.bottom)
+	{
+		return false;
+	}
+	//check if all corners of RECT are LEFT of line.
+	if(lineLeftPos < object.top && lineLeftPos < object.bottom &&
+		lineRightPos < object.top && lineRightPos < object.bottom)
+	{
+		return false;
+	}
+	//if not all corners are left or right, then RECT is overlapping with the line.
+	else
+		return true;
+}
+double WorldObject::getAngleAtPos(RECT object)
+{
+	dispBufUpdate();
+	double angle = 0;
+	Point2D line;
+	if(object.right > dispBuffObj[3].x && object.right < dispBuffObj[0].x)
+	{
+		angle = atan( (appearance.getShapeFromVert(3).y - appearance.getShapeFromVert(0).y) 
+			/ (appearance.getShapeFromVert(0).x - appearance.getShapeFromVert(3).x));
+		line.x = dispBuffObj[0].x;
+		line.y = dispBuffObj[0].y;
+		if(checkLineIntersect(object, line, angle))
+			return -angle;
+		else
+			return 0;
+	}
+	else if(object.right > dispBuffObj[0].x && object.right < dispBuffObj[1].x)
+	{
+		return 100;
+	}
+	else if(object.left > dispBuffObj[1].x && object.left < dispBuffObj[2].x)
+	{
+		angle = atan( (appearance.getShapeFromVert(2).y - appearance.getShapeFromVert(1).y) 
+			/ (appearance.getShapeFromVert(2).x - appearance.getShapeFromVert(1).x));
+		line.x = dispBuffObj[2].x;
+		line.y = dispBuffObj[2].y;
+			return angle;
+	}
+	else
 		return 0;
-	if(pos.x > dispBuffObj[1].x && pos.x < dispBuffObj[2].x)
-		return (sqrt(pow(dispBuffObj[2].x - dispBuffObj[1].x, 2) + pow(dispBuffObj[1].y - dispBuffObj[2].y, 2)));
-
 }
 int WorldObject::draw(GraphicsM * pGraphicsModule)
 {

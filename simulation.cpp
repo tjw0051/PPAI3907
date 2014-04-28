@@ -239,18 +239,11 @@ int Simulation::simControlLogic(HWND hWnd, keyEvent event)
 
 int Simulation::simDisplayFrame(HWND hWnd)
 {
-	/* TO DO: add relevant code */
-
-
-	/* Use double buffering:
-			(i) first draw into bitmap used as back-buffer
-			(ii) then display back buffer 
-	  */
 	// (i.1) display HUD
 	graphics.drawHUD();			// draw HUD
 
 	// (i.2) display world on HUD
-	world.draw(&graphics);		// update display of virtual world
+	world.draw(&graphics);
 
 	// (ii) display back buffer 
 	graphics.displayBackBuffer(hWnd);

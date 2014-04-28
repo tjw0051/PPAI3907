@@ -16,7 +16,7 @@ private:
 		ParticleModel particleModel;
 		Appearance appearance;
 		Point2D newPos;
-
+		bool impulse;
 		Point2D		dispBuffObj[4];
 		RECT viewport;
 		double slidingTheta, slidingfrCoef;
@@ -24,10 +24,16 @@ public:
 	GameObject();
 	//GameObject(RECT * viewport);
 	int update(keyEvent kEvent);
+	int update();
 	int draw(GraphicsM * pGraphicsModule);
 	RECT BoundingBox();
+	RECT movingBoundingBox();
 	void setSlidingForce(double theta, double frCoef);
-
+	Point2D getPos();
+	void isColliding(bool val);
+	void collision();
+	void fire(Point2D originPos);
+	void release();
 private:
 	int dispBufUpdate();
 	int worldCollisionCheck();

@@ -6,12 +6,14 @@
 #include <Windows.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <ctime>
 
 class ParticleModel
 {
 private:
 
 	Point2D 	pos;
+	Point2D		lastPos;
 	Point2D displacement;
 	Point2D velocity;
 	Point2D acceleration;
@@ -26,6 +28,7 @@ private:
 	Point2D sForce; // sliding force
 	Point2D netForce;
 	Point2D moveForce;
+	bool fired;
 
 	int currentTime, previousTime;
 
@@ -57,6 +60,8 @@ public:
 		int slidingForce(double theta, double frCoef);
 		int updateState();
 		Point2D directionalVelocity(double velocity, double angle);
+		void setLastPos();
+		void randomProjectile(Point2D originPos);
 };
 
 #endif

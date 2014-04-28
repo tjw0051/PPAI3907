@@ -82,7 +82,7 @@ int WINAPI WinMain(	HINSTANCE hThisAppInstance, HINSTANCE hPreviousAppInstance,
 	lParam:			second message parameter
  */
 
- LRESULT CALLBACK fnWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+ LRESULT CALLBACK fnWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
  	{
    static HDC         	hdc ;
    PAINTSTRUCT 			ps ;

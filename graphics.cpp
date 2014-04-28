@@ -69,7 +69,13 @@ int GraphicsM::graphicsModuleInit(HWND hWnd)
 
 	/* Initialise back buffer */
 	initMemDC(hWnd);
+	g = new Graphics(hWnd);
 
+	//Image image(L"background.png");
+	backgroundImage = new Image(L"background.png");//&image;
+	
+	backgroundRect = new Rect(viewport.left, viewport.top, viewport.right, viewport.bottom);
+	
 	return 1;
 	}
 
@@ -178,17 +184,19 @@ int GraphicsM::drawHUD()
 	HGDIOBJ		hPreviousBrush;		// handle for previous brush
 	HBRUSH		hBlueBrush;			// handle for blue custom brush
 	HBRUSH		hBrownBrush;		// handle for brown custom brush
-
+	//HBITMAP		hBitmap;
 	/* TO DO: add relevant code */
-
+	
+	//hBitmap = LoadBitmap(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BALL));
 	// sky (blue colour)
+	//g->DrawImage(backgroundImage, *backgroundRect);
 	hBlueBrush = CreateSolidBrush(RGB(0,192,255));	// blue brush
 	hPreviousBrush = SelectObject(hMdc, hBlueBrush);
 	Rectangle(hMdc, viewport.left, viewport.top, viewport.right, viewport.bottom);
 	SelectObject(hMdc, hPreviousBrush);	// restore previous brush
     // free resources which are no longer needed
     DeleteObject(hBlueBrush);
-
+	
 	// ground (brown colour)
 	hBrownBrush = CreateSolidBrush(RGB(255,128,64));	// brown brush
 	hPreviousBrush = SelectObject(hMdc, hBrownBrush);
@@ -196,11 +204,13 @@ int GraphicsM::drawHUD()
 	SelectObject(hMdc, hPreviousBrush);	// restore previous brush
     // free resources which are no longer needed
     DeleteObject(hBrownBrush);
-
+	
+	//Image image(L"background.png");
+	// DrawImage(backgroundImage, backgroundRect);
+	//graphics.DrawImage(&image, 10, 10);
+	
 	return 1;
 	}
-
-
 /*
     Draws a polygon.
 
@@ -219,7 +229,7 @@ int GraphicsM::drawPolygon(Point2D polygon[], int vertexCount, bool closed)
 
 	if (closed == true)	// closed polygon
 		LineTo(hMdc, (int)(polygon[0].x + 0.5), (int)(polygon[0].y + 0.5));
-
+	
 	return 1;
     }
 

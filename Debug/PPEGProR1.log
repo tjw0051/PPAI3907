@@ -1,30 +1,20 @@
-﻿Build started 22/04/2014 22:35:12.
+﻿Build started 27/04/2014 23:52:38.
      1>Project "C:\Users\Tom\University Work\Year 2\Semester 2\Programming Physics and AI Engines for Games\PPAI3907\PPEGProR1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameObject.cpp WorldObject.cpp
-         GameObject.cpp
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\gameobject.cpp(95): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\gameobject.cpp(96): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\gameobject.cpp(97): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\gameobject.cpp(98): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\gameobject.cpp(168): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\gameobject.cpp(175): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\gameobject.cpp(182): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\gameobject.cpp(189): warning C4244: 'argument' : conversion from 'LONG' to 'float', possible loss of data
-         WorldObject.cpp
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\worldobject.cpp(19): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\worldobject.cpp(58): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\worldobject.cpp(59): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\worldobject.cpp(60): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\worldobject.cpp(61): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-         Generating Code...
-     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\worldobject.cpp(33): warning C4715: 'WorldObject::getAngleAtPos' : not all control paths return a value
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\simulation1.obj" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt simulation.cpp
-         simulation.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\winApp1.obj" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt winApp.cpp
-         winApp.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\worldData1.obj" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt worldData.cpp
-         worldData.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ParticleModel.cpp
+         ParticleModel.cpp
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(32): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(34): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(78): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(119): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(121): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(122): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(123): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(288): warning C4305: '*=' : truncation from 'double' to 'float'
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(289): warning C4305: '*=' : truncation from 'double' to 'float'
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(299): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(300): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\tom\university work\year 2\semester 2\programming physics and ai engines for games\ppai3907\particlemodel.cpp(128): warning C4715: 'ParticleModel::slidingForce' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug/PPAIE4GProR1.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug/PPAIE4GProR1.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE:NO /IMPLIB:".\Debug\PPAIE4GProR1.lib" /MACHINE:X86 /SAFESEH .\Debug/Appearance.obj
          .\Debug/GameObject.obj
@@ -41,4 +31,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:07.68
+Time Elapsed 00:00:02.05
