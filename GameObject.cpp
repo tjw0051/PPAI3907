@@ -12,15 +12,6 @@ GameObject::GameObject()
 	particleModel.setPosition(100.0F, 650.0F);
 	appearance.setShape2Square();
 }
-/*
-GameObject::GameObject(RECT * viewport)
-{
-	this->viewport = *viewport;
-	particleModel.setPosition(500.0F, 20.0F);
-	appearance.setShape2Square();
-	
-}
-*/
 int GameObject::update()
 {
 	particleModel.updateDragForce();
@@ -72,7 +63,6 @@ int GameObject::update(keyEvent kEvent)
 				break;
 			case SPACE:
 				particleModel.brake();
-				//particleModel.setVel( convertToPoint2D( rand() % 1 + 360, rand() % -5 + 5));
 					break;
 			default:
 				particleModel.moveNull();
@@ -137,67 +127,9 @@ RECT GameObject::movingBoundingBox()
 	
 	return boundingBox;
 }
-/*-----------------------------------
-Const Velocity world collision
-------------------------------------*/
-/*		Only check world edge
 
-int GameObject::worldCollisionCheck()
-{
-
-	if(BoundingBox().left < viewport.left || BoundingBox().right > viewport.right)
-	{
-		newPos.x = -particleModel.getVel().x;
-		newPos.y = particleModel.getVel().y;
-		particleModel.setVel(newPos);
-	}
-	if(BoundingBox().top < viewport.top || BoundingBox().bottom > viewport.bottom)
-	{
-		//object off left or right of screen
-		Point2D newPos;
-		newPos.x = particleModel.getVel().x;
-		newPos.y = -particleModel.getVel().y;
-		particleModel.setVel(newPos);
-	}
-	return 1;
-}
-*/
-/*
-int GameObject::worldCollisionCheck()
-{
-	if(BoundingBox().left < viewport.left) // player off left of screen
-	{
-		newPos.x = abs(particleModel.getVel().x);
-		newPos.y = abs(particleModel.getVel().y);
-		particleModel.setVel(newPos);
-	}
-	if(BoundingBox().right > viewport.right)
-	{
-		newPos.x = -abs(particleModel.getVel().x * 0.5);
-		newPos.y = -abs(particleModel.getVel().y* 0.5);
-		particleModel.setVel(newPos);
-	}
-	if(BoundingBox().top < viewport.top)
-	{
-		//object off left or right of screen
-		Point2D newPos;
-		newPos.x = abs(particleModel.getVel().x);
-		newPos.y = abs(particleModel.getVel().y);
-		particleModel.setVel(newPos);
-	}
-	if(BoundingBox().bottom > viewport.bottom)
-	{
-		newPos.x = -abs(particleModel.getVel().x);
-		newPos.y = -abs(particleModel.getVel().y);
-		particleModel.setVel(newPos);
-	}
-	
-	return 1;
-}
-*/
 void GameObject::collision()
 {
-	//particleModel.setLastPos();
 	Point2D newPoint2D;
 	newPoint2D.x = particleModel.getAccel().x;
 	newPoint2D.y = 0;
@@ -247,28 +179,3 @@ Point2D GameObject::getPos()
 {
 	return particleModel.getPosition();
 }
-/* 
------------------------------------
-Const Displacment world collision
-------------------------------------
-
-int GameObject::worldCollisionCheck()
-{
-
-	if(BoundingBox().left < viewport.left || BoundingBox().right > viewport.right)
-	{
-		newPos.x = -particleModel.getDisplacement().x;
-		newPos.y = particleModel.getDisplacement().y;
-		particleModel.setDisplacement(newPos);
-	}
-	if(BoundingBox().top < viewport.top || BoundingBox().bottom > viewport.bottom)
-	{
-		//object off left or right of screen
-		Point2D newPos;
-		newPos.x = particleModel.getDisplacement().x;
-		newPos.y = -particleModel.getDisplacement().y;
-		particleModel.setDisplacement(newPos);
-	}
-	return 1;
-}
-*/

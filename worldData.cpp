@@ -1,72 +1,27 @@
-/*
- * File name:	worldData.cpp
- * Description:	World data module.
- *
- * Author: 			Claude C. Chibelushi
- * Date:			04/10/04
- *					Modified 27/09/06, by CCC: addition of function for setting object shape
- *					Modified 19/01/09 by CCC: porting to C++
- *							 06/02/09 by CCC: additional functionality required  
- *                           for illustrative examples of GDI drawing functionality.
- *
- */
- 
+/*	
 
-/*							TO DO
---------------------------------------------------------------------
-				absolute collision detection with world
+Version Control : GitHub
+Repo: https://github.com/tjw0051/PPAI3907
+
 */
 
 
 #include "worldData.h"
 
-/*----------------------------------------------------------------------------\
- *                                                                            |
- *                       INITIALISATION AND CLEAN UP                   		  |
- *                                                                            |
- *----------------------------------------------------------------------------*/
-
-/*
-	Constructs and initialises a world data management module
-
-	Parameter list
-		none
- */
 
 WorldData::WorldData()
 	{
-	/* TO DO: add relevant code */
-		//background = new Bitmap;
 	}
 
-/**
-    Initialises the world
-
-	Parameter list
-         none.
-  */
 int WorldData::worldDataModuleInit(GraphicsM * graphics)
 {
 		viewport = graphics->getViewport();
-		//GameObject gameObject1 = GameObject(&viewport);
-		//backgroundImage = new Image(L"background.png");
-		//background = viewport;
-		//slopePolygon
-		//slopeObject = WorldObject(0, 300, 600);
 
 	return 1;
 }
 
-
-/*
-	Destructs world data management module
-
-	Parameter list
-		none
- */
 WorldData::~WorldData()
 	{
-	/* TO DO: add relevant code */
 
 	worldCleanUp();
 

@@ -4,18 +4,17 @@ WorldObject::WorldObject()
 {
 	viewport.left = 10; 
 	viewport.top = 10;
-	viewport.right = 900; //650
-	viewport.bottom = 700; // 490
+	viewport.right = 900;
+	viewport.bottom = 700;
 	particleModel.setPosition(300, 500);
 	appearance.setShape2Hill();
 }
 WorldObject::WorldObject(int shape, int posX, int posY)
 {
-	//viewport = 0, 0, 650, 490; //10, 10, 650, 490
 	viewport.left = 10;
 	viewport.top = 10;
-	viewport.right = 900; //650
-	viewport.bottom = 700; // 490
+	viewport.right = 900;
+	viewport.bottom = 700; 
 	particleModel.setPosition(posX, posY);
 
 	if(shape = 0)
@@ -84,8 +83,6 @@ int WorldObject::draw(GraphicsM * pGraphicsModule)
 
 int WorldObject::dispBufUpdate()
 {
-    /* TO DO: add relevant code */
-
     // update display object (content of display buffer (with calculated vertex coordinates of square at its current position))
     for(int vert = 0; vert < 4; ++vert)
     {

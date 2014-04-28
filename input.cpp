@@ -27,8 +27,6 @@
  */
 Input::Input()
 	{
-    /* TO DO: add relevant code */
-
 	}
 
 
@@ -40,8 +38,6 @@ Input::Input()
  */
 Input::~Input()
 	{
-	/* TO DO: add relevant code */
-
 	return;			
 	}
 

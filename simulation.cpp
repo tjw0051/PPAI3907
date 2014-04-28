@@ -115,8 +115,6 @@ int Simulation::simInit(HWND hWnd)
 
 int Simulation::simCleanUp()
 {
-	/* TO DO: add relevant code */
-
 	world.worldCleanUp();			// release world objects
 	graphics.graphicsCleanUp();		// release graphics objects
 
@@ -188,9 +186,6 @@ int Simulation::gameLoopDelay(int frameStartTime)
 
 int Simulation::simProc(HWND hWnd)
 {
-	/* TO DO: add relevant code */
-
-
 	keyEvent		event;
 
 	/* Read user input (if any), and activate control logic */
@@ -219,8 +214,6 @@ int Simulation::simProc(HWND hWnd)
 
 int Simulation::simControlLogic(HWND hWnd, keyEvent event)
 {
-	/* TO DO: add relevant code */
-
 	if (event != QUIT)
 	{
 		world.update(event);					// update parameters of virtual world

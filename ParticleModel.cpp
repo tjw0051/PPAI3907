@@ -85,7 +85,6 @@ int ParticleModel::updateState()
 }
 int ParticleModel::slidingMotion()
 {
-	//slidingForce(2.0, 1);
 	updateState();
 	moveConstAccel();
 	return 1;

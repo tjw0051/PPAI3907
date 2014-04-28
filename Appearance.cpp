@@ -10,6 +10,7 @@ void Appearance::setShape2Square()
 }
 void Appearance::setShape2Hill()
 {
+	// Create Trapezium shape.
 	shape[0].x = 100.0F;	shape[0].y = 0.0F;
     shape[1].x = 200.0F;	shape[1].y = 0.0F;
     shape[2].x = 400.0F;	shape[2].y = 160.0F;
